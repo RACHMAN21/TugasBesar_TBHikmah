@@ -3,13 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tugabesa_tbhikmah;
+package TugasBesar_Main;
 
 /**
  *
- * @author diky
+ * @author 
+ * Nama     : Diva Sabila Ramadhan (10119039)
+ *          : Rachman Aldiansyah (10119038)
+ *          : Reihan Wiyanda (10119011)
+ * Kelas    : IF-1
  */
-public class TugaBesa_TBHikmah {
+public class TugaBesar_TBHikmah {
 
     /**
      * @param args the command line arguments
