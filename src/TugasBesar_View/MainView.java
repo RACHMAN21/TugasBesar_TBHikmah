@@ -36,10 +36,7 @@ public class MainView extends javax.swing.JFrame {
         
     }
     
-    private void hapusLayar() {
-        TxtUser.setText("");
-        TxtPass.setText("");
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -93,8 +90,6 @@ public class MainView extends javax.swing.JFrame {
                 btnMasukActionPerformed(evt);
             }
         });
-
-        TxtPass.setText("jPasswordField1");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
