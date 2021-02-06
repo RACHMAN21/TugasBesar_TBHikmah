@@ -5,6 +5,7 @@
  */
 package TugasBesar_Main;
 
+import TugasBesar_View.MainView;
 /**
  *
  * @author 
@@ -20,6 +21,7 @@ public class TugaBesar_TBHikmah {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
     }
     
 }

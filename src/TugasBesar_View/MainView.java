@@ -5,6 +5,12 @@
  */
 package TugasBesar_View;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import TugasBesar_Koneksi.Koneksi;
 /**
  *
  * @author 
@@ -14,14 +20,26 @@ package TugasBesar_View;
  * Kelas    : IF-1
  */
 public class MainView extends javax.swing.JFrame {
-
+    Connection con;
+    Statement stat;
+    ResultSet rs;
+    String sql;
     /**
      * Creates new form MaiView
      */
     public MainView() {
         initComponents();
+        Koneksi Db = new Koneksi ();
+        Db.config();
+        con = Db.con;
+        stat = Db.stm;
+        
     }
-
+    
+    private void hapusLayar() {
+        TxtUser.setText("");
+        TxtPass.setText("");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,8 +57,8 @@ public class MainView extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         TxtUser = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        TxtPass = new javax.swing.JPasswordField();
         btnMasuk = new javax.swing.JButton();
+        TxtPass = new javax.swing.JPasswordField();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -70,29 +88,37 @@ public class MainView extends javax.swing.JFrame {
         jLabel7.setText("Password");
 
         btnMasuk.setText("Masuk");
+        btnMasuk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMasukActionPerformed(evt);
+            }
+        });
+
+        TxtPass.setText("jPasswordField1");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(36, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(73, 73, 73))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                            .addComponent(TxtUser)
-                            .addComponent(TxtPass))
-                        .addGap(28, 28, 28))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61))))
+                    .addComponent(TxtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(73, 73, 73))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                            .addComponent(btnMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(61, 61, 61))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                                .addComponent(TxtUser))
+                            .addGap(28, 28, 28)))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,8 +136,8 @@ public class MainView extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(TxtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
+                .addComponent(TxtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
                 .addComponent(btnMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(71, Short.MAX_VALUE))
         );
@@ -156,6 +182,25 @@ public class MainView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasukActionPerformed
+        // TODO add your handling code here:
+        try {
+            sql = "SELECT * FROM tblogin WHERE username='"+TxtUser.getText()+"' AND password='"+TxtPass.getText()+"'";
+            rs = stat.executeQuery(sql);
+            if(rs.next()){
+                if(TxtUser.getText().equals(rs.getString("username")) &&TxtPass.getText().equals(rs.getString("password"))){
+                    JOptionPane.showMessageDialog(null, "Berhasil login");
+                    MenuView mv = new MenuView ();
+                    mv.setVisible(true);
+                }
+            }else{
+                    JOptionPane.showMessageDialog(null, "Username atau Password salah");
+                }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_btnMasukActionPerformed
 
     /**
      * @param args the command line arguments
