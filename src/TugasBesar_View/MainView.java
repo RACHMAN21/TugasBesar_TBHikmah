@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import TugasBesar_Koneksi.Koneksi;
+import javax.swing.JFrame;
+
 /**
  *
  * @author 
@@ -19,6 +21,7 @@ import TugasBesar_Koneksi.Koneksi;
  *          : Reihan Wiyanda (10119011)
  * Kelas    : IF-1
  */
+
 public class MainView extends javax.swing.JFrame {
     Connection con;
     Statement stat;
@@ -33,6 +36,11 @@ public class MainView extends javax.swing.JFrame {
         Db.config();
         con = Db.con;
         stat = Db.stm;
+        
+        // NO RESIZE
+        setExtendedState(JFrame.MAXIMIZED_HORIZ);
+        setVisible(true);
+        setResizable(false);
         
     }
     
