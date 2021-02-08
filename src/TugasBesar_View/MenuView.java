@@ -7,8 +7,10 @@ package TugasBesar_View;
 
 import TugasBesar_About.AboutApp;
 import com.mysql.cj.jdbc.MysqlDataSource;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -78,6 +80,14 @@ public class MenuView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ada kesalahan di database");
         }
        
+    }
+    
+    private void resetData() {
+        txtNamaUser.setText("");
+        txtUsername.setText("");
+        txtPassUser.setText("");
+        txtEmail.setText("");
+        txtTelepon.setText("");
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -830,6 +840,8 @@ public class MenuView extends javax.swing.JFrame {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/dblogin","root","");
             cn.createStatement().execute("insert into tblogin values" + "('"+txtNamaUser.getText()+"','"+txtUsername.getText()+"','"+txtPassUser.getText()+"','"+txtEmail.getText()+"', '"+txtTelepon.getText()+"')");
             JOptionPane.showMessageDialog(null, "Data Berhasil ditambahkan");
+            tampilData();
+            resetData();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Data Gagal ditambahkan!");
         }
@@ -837,17 +849,26 @@ public class MenuView extends javax.swing.JFrame {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // Mengatur kembali inputan
-        txtNamaUser.setText("");
-        txtUsername.setText("");
-        txtPassUser.setText("");
-        txtEmail.setText("");
-        txtTelepon.setText("");
+        resetData();
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
+        int i = TabelUser.getSelectedRow();
+        
+        String nama = tabel.getValueAt(i, 0).toString();
+        String sql = "DELETE FROM `tblogin` WHERE `tblogin`.`username` = '" + nama +"' ";
+        try{
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/dblogin","root","");
+            PreparedStatement ps = (PreparedStatement) cn.prepareStatement(sql);
+            ps.execute();
+            JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus!");
+        }catch(SQLException | HeadlessException e){
+            JOptionPane.showMessageDialog(null, "Data Gagal Dihapus!");
+        }finally{
+            tampilData();
     }//GEN-LAST:event_btnDeleteActionPerformed
-
+}
     private void txtTeleponActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTeleponActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTeleponActionPerformed
