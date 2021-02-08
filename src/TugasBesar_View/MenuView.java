@@ -26,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
  *  Nama    : Diva Sabila Ramadhan (10119039)
  *          : Rachman Aldiansyah (10119038)
  *          : Reihan Wiyanda (10119011)
+ * 
  * Kelas    : IF-1
  */
 public class MenuView extends javax.swing.JFrame {
@@ -836,6 +837,7 @@ public class MenuView extends javax.swing.JFrame {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         
         //Memasukan data admin baru ke database
+        //Butuh validasi
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/dblogin","root","");
             cn.createStatement().execute("insert into tblogin values" + "('"+txtNamaUser.getText()+"','"+txtUsername.getText()+"','"+txtPassUser.getText()+"','"+txtEmail.getText()+"', '"+txtTelepon.getText()+"')");
