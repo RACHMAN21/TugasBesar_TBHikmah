@@ -828,23 +828,26 @@ public class MenuView extends javax.swing.JFrame {
         // TODO add your handling code here:
         int dialogBtn = JOptionPane.YES_NO_OPTION;
         int dialogResult = JOptionPane.showConfirmDialog(this, "Anda yakin akan keluar?", "PERINGATAN", dialogBtn);
-        
-        if (dialogResult == 0) {
-            // True Condition
-            MainView logout = new MainView();
-            logout.setVisible(true);
-            this.setVisible(false);
-        } else {
-            // False Condition 
-        }
+        System.exit(0);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         
         //Memasukan data admin baru ke database
-        //Butuh validasi
+        if (txtNamaUser.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Nama tidak boleh kosong");
+            } if (txtUsername.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Username tidak boleh kosong");
+            } if (txtPassUser.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Password tidak boleh kosong");
+            } if (txtEmail.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Email tidak boleh Kosong");
+            } if (txtTelepon.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Telepon tidak boleh kosong");
+            } else    
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/dblogin","root","");
+                
             cn.createStatement().execute("insert into tblogin values" + "('"+txtNamaUser.getText()+"','"+txtUsername.getText()+"','"+txtPassUser.getText()+"','"+txtEmail.getText()+"', '"+txtTelepon.getText()+"')");
             JOptionPane.showMessageDialog(null, "Data Berhasil ditambahkan");
             tampilData();
@@ -861,14 +864,14 @@ public class MenuView extends javax.swing.JFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        int i = TabelUser.getSelectedRow();
         
+        int i = TabelUser.getSelectedRow();
         String nama = tabel.getValueAt(i, 0).toString();
-        String sql = "DELETE FROM `tblogin` WHERE `tblogin`.`username` = '" + nama +"' ";
+        String sql = "DELETE FROM `tblogin` WHERE `tblogin`.`nama` = '" + nama +"' ";
         try{
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/dblogin","root","");
             PreparedStatement ps = (PreparedStatement) cn.prepareStatement(sql);
-            ps.execute();
+            ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus!");
         }catch(SQLException | HeadlessException e){
             JOptionPane.showMessageDialog(null, "Data Gagal Dihapus!");
