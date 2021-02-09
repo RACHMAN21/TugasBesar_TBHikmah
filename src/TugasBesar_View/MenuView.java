@@ -580,9 +580,7 @@ public class MenuView extends javax.swing.JFrame {
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(MenuDaftarKaryawanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(MenuDaftarKaryawanLayout.createSequentialGroup()
-                        .addComponent(jLabel25)
-                        .addGap(13, 13, 13))
+                    .addComponent(jLabel25)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -595,10 +593,13 @@ public class MenuView extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Daftar Barang  ");
 
+        jLabel12.setFont(new java.awt.Font("Arial Narrow", 1, 12)); // NOI18N
         jLabel12.setText("Nama Barang :");
 
+        jLabel13.setFont(new java.awt.Font("Arial Narrow", 1, 12)); // NOI18N
         jLabel13.setText("Unit :");
 
+        jLabel14.setFont(new java.awt.Font("Arial Narrow", 1, 12)); // NOI18N
         jLabel14.setText("Merk :");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -625,6 +626,7 @@ public class MenuView extends javax.swing.JFrame {
 
         jButton3.setText("Delete");
 
+        jLabel6.setFont(new java.awt.Font("Arial Narrow", 1, 12)); // NOI18N
         jLabel6.setText("Harga :");
 
         javax.swing.GroupLayout MenuDaftarBarangLayout = new javax.swing.GroupLayout(MenuDaftarBarang);
