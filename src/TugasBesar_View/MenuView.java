@@ -828,12 +828,14 @@ public class MenuView extends javax.swing.JFrame {
         // TODO add your handling code here:
         int dialogBtn = JOptionPane.YES_NO_OPTION;
         int dialogResult = JOptionPane.showConfirmDialog(this, "Anda yakin akan keluar?", "PERINGATAN", dialogBtn);
-        System.exit(0);
+        MainView Mv = new MainView();
+        Mv.setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        
         //Memasukan data admin baru ke database
+        
+        //Validasi apabila ada data yang kosong
         if (txtNamaUser.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Nama tidak boleh kosong");
             } if (txtUsername.getText().equals("")) {
